@@ -7,14 +7,14 @@ cap = cv2.VideoCapture(0)
 # инициализация модулей mediapipe
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands(
-    max_num_hands=2,
+    max_num_hands=20,
     min_detection_confidence=0.7,
     min_tracking_confidence=0.7
 )
 
 mp_face = mp.solutions.face_mesh
 face_mesh = mp_face.FaceMesh(
-    max_num_faces=1,
+    max_num_faces=10,
     refine_landmarks=True,
     min_detection_confidence=0.7,
     min_tracking_confidence=0.7
@@ -24,6 +24,9 @@ mp_draw = mp.solutions.drawing_utils
 
 # белый стиль линий для лица
 white_spec = mp_draw.DrawingSpec(color=(255, 255, 255), thickness=1, circle_radius=1)
+
+# создаём окно заранее и делаем его растягиваемым
+cv2.namedWindow("Hand + Face Tracking", cv2.WINDOW_NORMAL)
 
 while True:
     success, frame = cap.read()
@@ -55,7 +58,7 @@ while True:
     if face_results.multi_face_landmarks:
         for face_landmarks in face_results.multi_face_landmarks:
 
-            # сетка лица белыми линиями
+            # сетка лица
             mp_draw.draw_landmarks(
                 image=frame,
                 landmark_list=face_landmarks,
@@ -64,7 +67,7 @@ while True:
                 connection_drawing_spec=white_spec
             )
 
-            # контуры лица белыми линиями
+            # контуры лица
             mp_draw.draw_landmarks(
                 image=frame,
                 landmark_list=face_landmarks,
@@ -74,9 +77,11 @@ while True:
             )
 
     # показ изображения
-    cv2.imshow("Hand + Face Tracking", frame)
+    cv2.imshow("Gestura", frame)
 
-    if cv2.waitKey(1) & 0xFF == 27:
+    # проверка: нажали esc ИЛИ закрыли окно
+    key = cv2.waitKey(1)
+    if key & 0xFF == 27 or cv2.getWindowProperty("Gestura", cv2.WND_PROP_VISIBLE) < 1:
         break
 
 cap.release()
