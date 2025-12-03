@@ -62,12 +62,13 @@ while True:
 
     # ----------- POSE (тело) ----------
     if pose_results.pose_landmarks:
+        pose_spec = mp_draw.DrawingSpec(color=(255, 255, 255), thickness=4, circle_radius=5)
         mp_draw.draw_landmarks(
             frame,
             pose_results.pose_landmarks,
             mp_pose.POSE_CONNECTIONS,
-            landmark_drawing_spec=white_spec,
-            connection_drawing_spec=white_spec
+            landmark_drawing_spec=pose_spec,
+            connection_drawing_spec=pose_spec
         )
 
     # ----------- HANDS (руки) ----------
