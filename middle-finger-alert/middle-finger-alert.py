@@ -62,7 +62,7 @@ with mp_hands.Hands(
                 play_obj.stop()
                 play_obj = None
 
-        cv2.imshow('middle finger detector', image)
+        cv2.imshow('Middle Finger Detector', image)
 
         if cv2.waitKey(1) & 0xFF == 27:
             if play_obj is not None and play_obj.is_playing():
