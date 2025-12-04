@@ -5,7 +5,7 @@ mp_face = mp.solutions.face_mesh
 cap = cv2.VideoCapture(0)
 
 with mp_face.FaceMesh(
-        max_num_faces=1,
+        max_num_faces=3,
         refine_landmarks=True,
         min_detection_confidence=0.5,
         min_tracking_confidence=0.5) as face_mesh:
