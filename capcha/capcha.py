@@ -51,7 +51,7 @@ with mp_hands.Hands(max_num_hands=1,
         finger_num = 0
         if results.multi_hand_landmarks:
             hand = results.multi_hand_landmarks[0]
-            mp_draw.draw_landmarks(frame, hand, mp_hands.HAND_CONNECTIONS)
+            #mp_draw.draw_landmarks(frame, hand, mp_hands.HAND_CONNECTIONS)        # removed drawing for invisibility
             finger_num = count_fingers(hand)
 
         if cooldown == 0:
