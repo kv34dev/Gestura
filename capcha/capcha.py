@@ -57,7 +57,7 @@ with mp_hands.Hands(max_num_hands=1,
         if cooldown == 0:
             if step < 3:
                 target = captcha[step]
-                cv2.putText(frame, f"show number: {target}",
+                cv2.putText(frame, f"Show with RIGHT hand: {target}",
                             (30, 60), cv2.FONT_HERSHEY_SIMPLEX, 1.1, (0, 255, 0), 2)
 
                 if finger_num == target and finger_num != 0:
@@ -66,12 +66,12 @@ with mp_hands.Hands(max_num_hands=1,
                     cooldown = 30
                 elif finger_num != 0 and finger_num != target:
                     wrong_sound.play()
-                    result_text = "start again"
+                    result_text = "Start Again"
                     step = 0
                     captcha = new_captcha()
                     cooldown = 60
             else:
-                result_text = "you are not a robot"
+                result_text = "You are not a robot!"
                 cv2.putText(frame, result_text, (30, 120),
                             cv2.FONT_HERSHEY_SIMPLEX, 1.2, (0, 255, 0), 3)
         else:
@@ -80,7 +80,7 @@ with mp_hands.Hands(max_num_hands=1,
         cv2.putText(frame, result_text, (30, 120),
                     cv2.FONT_HERSHEY_SIMPLEX, 1.2, (255, 255, 255), 3)
 
-        cv2.imshow("gesture captcha", frame)
+        cv2.imshow("Gesture Captcha", frame)
         if cv2.waitKey(1) & 0xFF == 27:
             break
 
