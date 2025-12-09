@@ -1,4 +1,4 @@
-# Gestura
+# Gestura — A Python library for detecting user interactions and behaviors.
 
 Gestura is a Python-based library designed for user interaction detection, focusing on gesture recognition and eye-tracking for anti-cheating purposes. It includes modules for verifying user actions and detecting middle finger gestures. 
 
